@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-02/static/css/main.267770e1.chunk.css",
-    "main.js": "/goit-react-hw-02/static/js/main.53264419.chunk.js",
-    "main.js.map": "/goit-react-hw-02/static/js/main.53264419.chunk.js.map",
-    "runtime~main.js": "/goit-react-hw-02/static/js/runtime~main.577bbb3b.js",
-    "runtime~main.js.map": "/goit-react-hw-02/static/js/runtime~main.577bbb3b.js.map",
-    "static/js/2.5efbc0e8.chunk.js": "/goit-react-hw-02/static/js/2.5efbc0e8.chunk.js",
-    "static/js/2.5efbc0e8.chunk.js.map": "/goit-react-hw-02/static/js/2.5efbc0e8.chunk.js.map",
-    "index.html": "/goit-react-hw-02/index.html",
-    "precache-manifest.c2f4847536898f84d43bc0df0e6bab0e.js": "/goit-react-hw-02/precache-manifest.c2f4847536898f84d43bc0df0e6bab0e.js",
-    "service-worker.js": "/goit-react-hw-02/service-worker.js",
-    "static/css/main.267770e1.chunk.css.map": "/goit-react-hw-02/static/css/main.267770e1.chunk.css.map"
+    "main.css": "/StanislavKaisin/goit-react-hw-03-image-finder/static/css/main.267770e1.chunk.css",
+    "main.js": "/StanislavKaisin/goit-react-hw-03-image-finder/static/js/main.53264419.chunk.js",
+    "main.js.map": "/StanislavKaisin/goit-react-hw-03-image-finder/static/js/main.53264419.chunk.js.map",
+    "runtime~main.js": "/StanislavKaisin/goit-react-hw-03-image-finder/static/js/runtime~main.5ffba271.js",
+    "runtime~main.js.map": "/StanislavKaisin/goit-react-hw-03-image-finder/static/js/runtime~main.5ffba271.js.map",
+    "static/js/2.5efbc0e8.chunk.js": "/StanislavKaisin/goit-react-hw-03-image-finder/static/js/2.5efbc0e8.chunk.js",
+    "static/js/2.5efbc0e8.chunk.js.map": "/StanislavKaisin/goit-react-hw-03-image-finder/static/js/2.5efbc0e8.chunk.js.map",
+    "index.html": "/StanislavKaisin/goit-react-hw-03-image-finder/index.html",
+    "precache-manifest.b6b1691409fe6ad66c537033d50ab90c.js": "/StanislavKaisin/goit-react-hw-03-image-finder/precache-manifest.b6b1691409fe6ad66c537033d50ab90c.js",
+    "service-worker.js": "/StanislavKaisin/goit-react-hw-03-image-finder/service-worker.js",
+    "static/css/main.267770e1.chunk.css.map": "/StanislavKaisin/goit-react-hw-03-image-finder/static/css/main.267770e1.chunk.css.map"
   }
 }
