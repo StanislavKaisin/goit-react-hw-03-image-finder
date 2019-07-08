@@ -32,8 +32,10 @@ export default class ImageFinder extends Component {
       .get(wordForSearch, pageNumber)
       .then(data => {
         return this.setState(prevState => {
+          const totalPages = Math.ceil(data.totalHits / 12);
           return {
             searchResults: [...prevState.searchResults, ...data.hits],
+            totalPages,
           };
         });
       })
@@ -44,6 +46,8 @@ export default class ImageFinder extends Component {
   }
 
   componentDidUpdate() {
+    const { wordForSearch, pageNumber } = this.state;
+    if (!wordForSearch && pageNumber === 1) return;
     this.endOfPage.current.scrollIntoView({
       block: 'end',
     });
@@ -91,9 +95,10 @@ export default class ImageFinder extends Component {
           .get(inputWord, this.state.pageNumber)
           .then(data => {
             const totalPages = Math.ceil(data.totalHits / 12);
+
             return this.setState(prevState => {
               return {
-                searchResults: [...data.hits],
+                searchResults: [...prevState.searchResults, ...data.hits],
                 totalPages,
                 pageNumber:
                   prevState.pageNumber + 1 >= totalPages
@@ -110,30 +115,34 @@ export default class ImageFinder extends Component {
 
   handleLoadMore = e => {
     e.preventDefault();
-    const { wordForSearch, totalPages, pageNumber } = this.state;
-    this.setState(prevState => {
-      return {
-        isLoading: true,
-        error: null,
-        pageNumber:
-          prevState.pageNumber + 1 >= totalPages
-            ? totalPages
-            : prevState.pageNumber + 1,
-      };
-    });
-    api
-      .get(wordForSearch, pageNumber)
-      .then(data => {
-        return this.setState(prevState => {
-          return {
-            searchResults: [...prevState.searchResults, ...data.hits],
-          };
-        });
-      })
-      .catch(error => this.setState({ error, searchResults: [] }))
-      .finally(() => {
-        this.setState({ isLoading: false });
-      });
+    const { wordForSearch, totalPages } = this.state;
+    this.setState(
+      prevState => {
+        return {
+          isLoading: true,
+          error: null,
+          pageNumber:
+            prevState.pageNumber + 1 >= totalPages
+              ? totalPages
+              : prevState.pageNumber + 1,
+        };
+      },
+      () => {
+        api
+          .get(wordForSearch, this.state.pageNumber)
+          .then(data => {
+            return this.setState(prevState => {
+              return {
+                searchResults: [...prevState.searchResults, ...data.hits],
+              };
+            });
+          })
+          .catch(error => this.setState({ error, searchResults: [] }))
+          .finally(() => {
+            this.setState({ isLoading: false });
+          });
+      },
+    );
   };
 
   render() {
@@ -144,6 +153,7 @@ export default class ImageFinder extends Component {
       error,
       totalPages,
       pageNumber,
+      wordForSearch,
     } = this.state;
     return (
       <div className={styles.app}>
@@ -162,6 +172,7 @@ export default class ImageFinder extends Component {
             totalPages={totalPages}
             pageNumber={pageNumber}
             inputWord={inputWord}
+            wordForSearch={wordForSearch}
           />
         )}
         <div ref={this.endOfPage}></div>

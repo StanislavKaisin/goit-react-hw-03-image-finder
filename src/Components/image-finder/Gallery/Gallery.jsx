@@ -19,24 +19,28 @@ export default class Gallery extends Component {
 
   render() {
     const { isModalOpen, largeImageURL } = this.state;
-    const { searchResults, onLoadMore, totalPages, pageNumber } = this.props;
+    const {
+      searchResults,
+      onLoadMore,
+      totalPages,
+      pageNumber,
+      wordForSearch,
+    } = this.props;
     return (
       <div>
         <ul className={styles.gallery}>
-          {searchResults.length ? (
-            searchResults.map(photo => (
-              <PhotoCard
-                key={photo.id}
-                photo={photo}
-                openModal={this.handleOpenModal}
-                isModalOpen={isModalOpen}
-              />
-            ))
-          ) : (
-            <h2>No matching results</h2>
-          )}
+          {searchResults.length
+            ? searchResults.map(photo => (
+                <PhotoCard
+                  key={photo.id}
+                  photo={photo}
+                  openModal={this.handleOpenModal}
+                  isModalOpen={isModalOpen}
+                />
+              ))
+            : wordForSearch && <h2>No matching results</h2>}
         </ul>
-        {pageNumber < totalPages ? (
+        {searchResults.length && pageNumber < totalPages ? (
           <button type="button" onClick={onLoadMore} className={styles.button}>
             Load more
           </button>
@@ -57,6 +61,7 @@ Gallery.propTypes = {
   onLoadMore: PropTypes.func.isRequired,
   totalPages: PropTypes.number.isRequired,
   pageNumber: PropTypes.number.isRequired,
+  wordForSearch: PropTypes.string.isRequired,
 };
 
 Gallery.defaultProps = {
