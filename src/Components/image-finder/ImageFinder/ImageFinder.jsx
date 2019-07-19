@@ -48,9 +48,7 @@ export default class ImageFinder extends Component {
   componentDidUpdate() {
     const { wordForSearch, pageNumber } = this.state;
     if (!wordForSearch && pageNumber === 1) return;
-    this.endOfPage.current.scrollIntoView({
-      block: 'end',
-    });
+    this.endOfPage.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
   }
 
   handleChange = e => {
