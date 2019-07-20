@@ -46,8 +46,6 @@ export default class ImageFinder extends Component {
   }
 
   componentDidUpdate() {
-    const { wordForSearch, pageNumber } = this.state;
-    if (!wordForSearch && pageNumber === 1) return;
     this.endOfPage.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
   }
 
@@ -73,6 +71,7 @@ export default class ImageFinder extends Component {
         } else {
           ifNewWord = false;
         }
+
         if (ifNewWord) {
           return {
             ...INITIAL_STATE,
@@ -84,6 +83,7 @@ export default class ImageFinder extends Component {
         }
         return {
           isLoading: true,
+          pageNumber: prevState.pageNumber + 1,
           error: null,
           wordForSearch: lastWordForSearch,
         };
