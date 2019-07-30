@@ -2,8 +2,8 @@ import React, { Component, createRef } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import Gallery from '../Gallery/Gallery';
-import Spinner from '../Spinner/Spinner';
 import ErrorNotification from '../ErrorNotification/ErrorNotification';
+// import Spinner from '../Spinner/Spinner';
 
 import * as api from '../../../Services/apiImages';
 
@@ -42,11 +42,15 @@ export default class ImageFinder extends Component {
       .catch(error => this.setState({ error, searchResults: [] }))
       .finally(() => {
         this.setState({ isLoading: false });
+        this.endOfPage.current.scrollIntoView({
+          block: 'end',
+          behavior: 'smooth',
+        });
       });
   }
 
   componentDidUpdate() {
-    this.endOfPage.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    // this.endOfPage.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
   }
 
   handleChange = e => {
@@ -161,18 +165,15 @@ export default class ImageFinder extends Component {
           onSubmit={this.handleSubmit}
         />
         {error && <ErrorNotification text={error.message} />}
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <Gallery
-            searchResults={searchResults}
-            onLoadMore={this.handleLoadMore}
-            totalPages={totalPages}
-            pageNumber={pageNumber}
-            inputWord={inputWord}
-            wordForSearch={wordForSearch}
-          />
-        )}
+        <Gallery
+          searchResults={searchResults}
+          isLoading={isLoading}
+          onLoadMore={this.handleLoadMore}
+          totalPages={totalPages}
+          pageNumber={pageNumber}
+          inputWord={inputWord}
+          wordForSearch={wordForSearch}
+        />
         <div ref={this.endOfPage}></div>
       </div>
     );

@@ -40,6 +40,7 @@ export default class Gallery extends Component {
               ))
             : wordForSearch && <h2>No matching results</h2>}
         </ul>
+
         {searchResults.length && pageNumber < totalPages ? (
           <button type="button" onClick={onLoadMore} className={styles.button}>
             Load more
